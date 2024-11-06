@@ -1,2 +1,11 @@
 streamlit
 openai
+pillow
+transformers
+opencv
+gpt4all
+opencv-python 
+accelerate 
+insightface 
+onnxruntime
+

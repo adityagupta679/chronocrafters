@@ -1,11 +1,84 @@
 import streamlit as st
 from openai import OpenAI
+from PIL import Image
+
+# model_phi = gpt4all.GPT4All("/assets/Phi-3-mini-4k-instruct-q4.gguf")
+scenario = "Spending Rainy Day"
+characters = "Sina"
+template = f"""
+
+
+You will be given a short scenario, and your task is to split it into 6 parts.
+Each part will represent a different cartoon panel.
+
+For each cartoon panel, provide the following details:
+
+1. Panel Description:
+
+Write a detailed description of the panel, consisting of words or short phrases separated by commas.
+
+Include:
+
+Characters: Describe all characters precisely in each panel (use detailed character descriptions instead of their names).
+
+Background: Describe the setting or backdrop for the panel.
+
+Character Postures and Expressions: Include details about character positioning, body language, and facial expressions.
+
+Important Notes:
+
+No Full Sentences: Use only words or short phrases, separated by commas.
+
+Avoid Repetition: Descriptions should be unique for each panel. Do not use the same description twice.
+
+2. Panel Text:
+
+Write the dialogue or text for the panel.
+
+Limit the text to two short sentences at most.
+
+Each sentence must start with the character's name.
+
+
+
+You have to follow below Example Output format:
+
+
+# Panel 1
+description: 
+text:
+```
+
+```
+# end
+
+Use following characters amd short scenario for output:
+
+Characters: {characters}
+Short Scenario: {scenario}
+
+Split the Scenario into 6 Panels:
+
+Create a description and text for each of the 6 panels based on the given scenario.
+
+Your output will include Exact 6 panels in total, each with a detailed description and dialogue.
+
+"""
+
+
 
 # Show title and description.
-st.title("📄 Document question answering")
+st.title("📄 Consistent Comic Generation")
 st.write(
-    "Upload a document below and ask a question about it – GPT will answer! "
-    "To use this app, you need to provide an OpenAI API key, which you can get [here](https://platform.openai.com/account/api-keys). "
+    "Upload an image below and provide a short scenario "
+    #"To use this app, you need to provide an OpenAI API key, which you can get [here](https://platform.openai.com/account/api-keys). "
+)
+
+# Ask the user for a question via `st.text_area`.
+scenario = st.text_area(
+    "Provide a scenario for the comic.",
+    placeholder="Adventures of Ravi in his office...",
+    # disabled=not uploaded_file,
 )
 
 # Ask user for their OpenAI API key via `st.text_input`.
