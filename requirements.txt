@@ -6,5 +6,8 @@ gpt4all
 opencv-python 
 accelerate 
 insightface 
+onnx == 1.16.1
 onnxruntime
-
+ultralytics
+torch
+diffusers
